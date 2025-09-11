@@ -4,10 +4,10 @@ services:
     ports:
       - 13378:80
     volumes:
-      - /data/docker_volumes/audiobookshelf_audiobooks:/audiobooks
+      - $DOCKER_VOLUME_PATH/audiobookshelf_audiobooks:/audiobooks
 #      - </path/to/podcasts>:/podcasts
-      - /data/docker_volumes/audiobookshelf_config:/config
-      - /data/docker_volumes/audiobookshelf_metadata:/metadata
+      - $DOCKER_VOLUME_PATH/audiobookshelf_config:/config
+      - $DOCKER_VOLUME_PATH/audiobookshelf_metadata:/metadata
     environment:
       - TZ=Asia/Kolkata
     networks:
