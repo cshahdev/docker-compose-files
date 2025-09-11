@@ -1,0 +1,82 @@
+#pgadmin.localhost {
+#    reverse_proxy pgadmin:80
+#}
+
+#pma.localhost {
+#    reverse_proxy phpmyadmin:80
+#}
+
+#grafana.localhost {
+#    reverse_proxy grafana:3000
+#}
+
+#semaphore.localhost {
+#    reverse_proxy semaphore:3000
+#}
+
+#calibre-web.localhost {
+#    reverse_proxy calibre-web:8083
+#}
+
+#auth.localhost {
+#    reverse_proxy server:9000
+# tls /data/caddy/certificates/local/auth.localhost/auth.localhost.crt /data/caddy/certificates/local/auth.localhost/auth.localhost.key
+
+# # Enable HTTP/2
+# encode gzip
+
+# # HSTS header
+# header Strict-Transport-Security "max-age=63072000"
+
+# reverse_proxy {
+#     to server:9443
+
+#     # Set headers
+#     header_up X-Forwarded-Proto {scheme}
+#     header_up X-Forwarded-For {remote}
+#     header_up Host {host}
+
+#     # Keep connections alive
+#     transport http {
+#         versions h2c 1.1
+#     }
+# }    
+#}
+
+#authelia.app.localhost {
+#    reverse_proxy authelia:9091
+#}
+
+# authelia-admin.app.localhost {
+#     reverse_proxy authelia:9092
+# }
+
+# Protected with Authentik
+#localhost {
+# always forward outpost path to actual outpost
+#    reverse_proxy /outpost.goauthentik.io/* http://server:9000
+
+# forward authentication to outpost
+#    forward_auth http://server:9000 {
+#        uri /outpost.goauthentik.io/auth/caddy
+
+# capitalization of the headers is important, otherwise they will be empty
+#        copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
+
+# optional, in this config trust all private ranges, should probably be set to the outposts IP
+#       trusted_proxies private_ranges
+}
+
+#    respond "Hello, world!"
+}
+
+# Protected with Authelia
+#app.localhost {
+#    forward_auth authelia:9091 {
+#        uri /api/authz/forward-auth
+#        copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+#    }
+
+#    respond "Hello, world!"
+#}
+
