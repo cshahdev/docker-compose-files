@@ -5,7 +5,7 @@ services:
       - 13378:80
     volumes:
       - $DOCKER_VOLUME_PATH/audiobookshelf_audiobooks:/audiobooks
-#      - </path/to/podcasts>:/podcasts
+      #      - </path/to/podcasts>:/podcasts
       - $DOCKER_VOLUME_PATH/audiobookshelf_config:/config
       - $DOCKER_VOLUME_PATH/audiobookshelf_metadata:/metadata
     environment:
