@@ -1,3 +1,14 @@
+
+
+ audiobookshelf-luster-sanitizer-haunt.furyrealm.qzz.io {
+    reverse_proxy audiobookshelf:80
+}
+
+
+#pgadmin.localhost {
+#    reverse_proxy pgadmin:80
+#}
+
 #pgadmin.localhost {
 #    reverse_proxy pgadmin:80
 #}
@@ -65,10 +76,10 @@
 
 # optional, in this config trust all private ranges, should probably be set to the outposts IP
 #       trusted_proxies private_ranges
-}
+#}
 
 #    respond "Hello, world!"
-}
+#}
 
 # Protected with Authelia
 #app.localhost {
