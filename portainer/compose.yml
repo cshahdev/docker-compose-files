@@ -1,0 +1,31 @@
+---
+# version: "3.9"
+services:
+  portainer:
+    image: portainer/portainer-ce:2.33.3-alpine
+    container_name: portainer
+    labels:
+      - io.portainer.accesscontrol.public=true
+    #   - traefik.enable=true
+    #   - traefik.http.routers.portainer.rule=Host(`portainer.localhost`)
+    #   - traefik.http.routers.portainer.entrypoints=websecure
+    #   - traefik.http.routers.portainer.service=portainer
+    #   - traefik.http.services.portainer.loadbalancer.server.port=9000
+    #   - traefik.http.routers.portainer.tls=true
+    # ports:
+    #   - 9443:9443
+    volumes:
+      - portainer_data:/data
+      # - /mnt/e/docker_volumes/portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - internal-net
+    restart: always
+volumes:
+  portainer_data:
+    name: portainer_data
+    external: true
+networks:
+  internal-net:
+    name: fury-net
+    external: true
