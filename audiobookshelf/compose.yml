@@ -7,6 +7,7 @@ services:
     volumes:
       - $DOCKER_VOLUME_PATH/audiobookshelf_audiobooks:/audiobooks
       #      - </path/to/podcasts>:/podcasts
+      - hzsb-malphite:/data/storagebox
       - $DOCKER_VOLUME_PATH/audiobookshelf_config:/config
       - $DOCKER_VOLUME_PATH/audiobookshelf_metadata:/metadata
     environment:
@@ -14,6 +15,9 @@ services:
     networks:
       - internal-net
     restart: always
+volumes:
+  hzsb-malphite:
+    external: true
 networks:
   internal-net:
     external: true
