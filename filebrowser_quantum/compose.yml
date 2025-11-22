@@ -1,0 +1,26 @@
+services:
+  filebrowser_quantum:
+    image: gtstef/filebrowser:${IMAGE_TAG:-latest}
+    container_name: filebrowser_quantum
+    environment:
+      FILEBROWSER_CONFIG: "data/config.yaml" # overrides the default path which is ./config.yaml
+      FILEBROWSER_ADMIN_PASSWORD: ${FILEBROWSER_ADMIN_PASSWORD:-change-me}
+      TZ: ${TZ:-Asia/Kolkata}
+    volumes:
+      - filebrowser_data:/home/filebrowser/data
+    ports:
+      - ${FILEBROWSER_PORT:-8080}:80
+    restart: unless-stopped
+    networks:
+      - internal-net
+networks:
+  internal-net:
+    name: ${NETWORK_NAME:-internal-net}
+    external: true
+volumes:
+  filebrowser_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${FILEBROWSER_DATA_PATH:-./filebrowser_data}
+      o: bind
