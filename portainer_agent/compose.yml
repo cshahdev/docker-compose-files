@@ -1,0 +1,19 @@
+services:
+  portainer_agent:
+    image: portainer/agent:${IMAGE_TAG:-2.33.3}
+    container_name: portainer_agent
+    ports:
+      - ${AGENT_PORT:-9001}:9001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /:/host
+    environment:
+      - AGENT_SECRET=${AGENT_SECRET}
+    networks:
+      - internal-net
+    restart: always
+networks:
+  internal-net:
+    name: ${NETWORK_NAME:-internal-net}
+    external: true
