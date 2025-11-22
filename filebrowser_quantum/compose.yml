@@ -19,6 +19,7 @@ networks:
     external: true
 volumes:
   filebrowser_data:
+    name: filebrowser_data
     driver: local
     driver_opts:
       type: none
