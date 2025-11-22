@@ -18,6 +18,8 @@ cp .env.example .env
 | `IMAGE_TAG`                  | `latest`             | FileBrowser version          |
 | `NETWORK_NAME`               | `internal-net`       | External network name        |
 | `TZ`                         | `Asia/Kolkata`       | Timezone                     |
+| `UID`                        | `1000`               | User ID for file permissions |
+| `GID`                        | `1000`               | Group ID for file permissions |
 | `FILEBROWSER_ADMIN_PASSWORD` | `change-me`          | Admin password               |
 | `FILEBROWSER_PORT`           | `8080`               | Web UI port                  |
 | `FILEBROWSER_DATA_PATH`      | `./filebrowser_data` | Config/database storage path |
@@ -118,8 +120,9 @@ Config changes require container restart. See [docs](https://filebrowserquantum.
 
 **Permission denied on files:**
 
-- Review host directory permissions
-- FileBrowser runs as specific UID/GID
+- Match `UID`/`GID` in `.env` to host user
+- Check host directory ownership: `chown -R 1000:1000 /path`
+- Verify volume paths in `compose.custom.yml`
 
 ## Resources
 

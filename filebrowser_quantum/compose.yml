@@ -2,6 +2,7 @@ services:
   filebrowser_quantum:
     image: gtstef/filebrowser:${IMAGE_TAG:-latest}
     container_name: filebrowser_quantum
+    user: "${UID:-1000}:${GID:-1000}"
     environment:
       FILEBROWSER_CONFIG: "data/config.yaml" # overrides the default path which is ./config.yaml
       FILEBROWSER_ADMIN_PASSWORD: ${FILEBROWSER_ADMIN_PASSWORD:-change-me}
