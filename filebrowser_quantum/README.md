@@ -5,7 +5,8 @@ Advanced fork of FileBrowser. Self-hosted web file manager with multi-source sup
 ## Prerequisites
 
 - Docker & Docker Compose
-- External network `internal-net`
+- External network `internal-net` (or `fury-net`)
+- External volume `filebrowser_tmp` for temp storage
 
 ## Configuration
 
@@ -72,8 +73,14 @@ docker network create fury-net
 
 ## Volumes
 
-- `filebrowser_data` - Config file (`config.yaml`), database, user settings
+- `filebrowser_data` - Config file (`config.yaml`), database, user settings (bind mount)
+- `filebrowser_tmp` - Temp storage for uploads/operations (external volume, must exist)
 - Custom mounts - Defined in `compose.custom.yml`
+
+**Create tmp volume:**
+```bash
+docker volume create filebrowser_tmp
+```
 
 ## Configuration File
 

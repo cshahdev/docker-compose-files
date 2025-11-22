@@ -9,6 +9,7 @@ services:
       TZ: ${TZ:-Asia/Kolkata}
     volumes:
       - filebrowser_data:/home/filebrowser/data
+      - filebrowser_tmp:/home/filebrowser/tmp
     ports:
       - ${FILEBROWSER_PORT:-8080}:80
     restart: unless-stopped
@@ -26,3 +27,6 @@ volumes:
       type: none
       device: ${FILEBROWSER_DATA_PATH:-./filebrowser_data}
       o: bind
+  filebrowser_tmp:
+    name: filebrowser_tmp
+    external: true
